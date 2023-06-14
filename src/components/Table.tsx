@@ -1,20 +1,31 @@
+import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 
-interface People {
-  name: string
-  title: string
-  department: string
-  role: string
-  email: string
+interface Category {
+  creationAt: Date
+  id: number
   image: string
+  name: string
+  updatedAt: Date
+}
+
+export interface Product {
+  creationAt: Date
+  description: string 
+  id: number
+  images: string[]
+  price: number
+  title: string
+  updatedAt: Date
+  category: Category
 }
 
 interface Props {
-  people: People[]
+  products: Product[]
 }
 
 export default function Table(props: Props) {
-  const { people } = props 
+  const { products } = props 
   return (
     <>
       <div className="flex flex-col">
@@ -28,13 +39,13 @@ export default function Table(props: Props) {
                       Name
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Title
+                      Id
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Status
+                      Category
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Role
+                      Price
                     </th>
                     <th scope="col" className="relative px-6 py-3">
                       <span className="sr-only">Edit</span>
@@ -42,36 +53,35 @@ export default function Table(props: Props) {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {people.map((person, index) => (
-                    <tr key={index}>
+                  {products?.map((product, index) => (
+                    <tr key={`Product-item-${index}`}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10">
                             <Image 
-                              className="rounded-full" src={person.image} alt={person.name}
+                              className="rounded-full" src={product.images[1]} alt={product.title}
                               width={40}
                               height={40}
                               loading="lazy"
                             />
                           </div>
                           <div className="ml-4">
-                            <div className="text-sm font-medium text-gray-900">{person.name}</div>
-                            <div className="text-sm text-gray-500">{person.email}</div>
+                            <div className="text-sm font-medium text-gray-900">{product.title}</div>
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">{person.title}</div>
-                        <div className="text-sm text-gray-500">{person.department}</div>
+                        <div className="text-sm text-gray-500">{product.id}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                          {product.category?.name}
+                        </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{person.role}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${product.price}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="#" className="text-purple-600 hover:text-purple-800 hover:underline cursor-pointer inline">
-                          Edit
-                        </a>
+                        <PencilSquareIcon className="text-purple-600 hover:text-purple-800 hover:underline cursor-pointer inline " width={20} height={20} />
+                        <TrashIcon className="ml-6 text-red-600 hover:text-red-800 hover:underline cursor-pointer inline" width={20} height={20} />
                       </td>
                     </tr>
                   ))}
