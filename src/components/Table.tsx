@@ -1,31 +1,27 @@
+'use client'
+import { deleteProduct } from '@/libs/product.api'
+import { Product } from '@/types/Product'
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
-
-interface Category {
-  creationAt: Date
-  id: number
-  image: string
-  name: string
-  updatedAt: Date
-}
-
-export interface Product {
-  creationAt: Date
-  description: string 
-  id: number
-  images: string[]
-  price: number
-  title: string
-  updatedAt: Date
-  category: Category
-}
+import { useEffect, useState } from 'react'
 
 interface Props {
   products: Product[]
 }
 
 export default function Table(props: Props) {
-  const { products } = props 
+  const { products: productsResponse } = props 
+  const [products, setProducts] = useState<Product[]>([])
+
+  useEffect(()  => {
+    setProducts(productsResponse)
+  }, [productsResponse, products])
+
+  const handleDelete = (id: number, productIndex: number) => {
+    setProducts(products.splice(productIndex, 1))
+    deleteProduct(id)
+  }
+
   return (
     <>
       <div className="flex flex-col">
@@ -74,14 +70,26 @@ export default function Table(props: Props) {
                         <div className="text-sm text-gray-500">{product.id}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
                           {product.category?.name}
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${product.price}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <PencilSquareIcon className="text-purple-600 hover:text-purple-800 hover:underline cursor-pointer inline " width={20} height={20} />
-                        <TrashIcon className="ml-6 text-red-600 hover:text-red-800 hover:underline cursor-pointer inline" width={20} height={20} />
+                        
+                        <PencilSquareIcon 
+                          className="text-purple-600 hover:text-purple-800 hover:underline cursor-pointer inline " 
+                          width={20} 
+                          height={20}
+                        />
+                        
+                        <TrashIcon 
+                          className="ml-6 text-red-600 hover:text-red-800 hover:underline cursor-pointer inline" 
+                          width={20} 
+                          height={20}
+                          aria-hidden="true"
+                          onClick={() => handleDelete(product.id, index)}
+                        />
                       </td>
                     </tr>
                   ))}

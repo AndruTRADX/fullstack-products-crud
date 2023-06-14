@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios, { AxiosResponse } from 'axios'
-import { Product } from '@/components/Table'
+import axios from 'axios'
 
 export const useFetch = (endpoint: string) => {
   const [data, setData] = useState([])
