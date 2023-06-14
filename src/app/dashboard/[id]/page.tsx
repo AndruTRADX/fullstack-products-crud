@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { endpoints } from '@/libs/endpoints.api' 
-import { CreateProduct, Product } from '@/types/Product'
+import { Product } from '@/types/Product'
 import Form from '@/components/Form'
 
 export default function Edit({ params }: { params: { id: string } }) {
