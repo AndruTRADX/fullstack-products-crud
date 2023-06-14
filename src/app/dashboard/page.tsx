@@ -1,5 +1,4 @@
 'use client'
-import Nav from '../../components/Nav'
 import Table from '../../components/Table'
 import { useState } from 'react'
 import { useFetch } from '@/hooks/useFecth'
@@ -9,12 +8,12 @@ import { Chart } from '@/common/Chart'
 import Header from '@/components/Header'
 import { Product } from '@/types/Product'
 import Modal from '@/common/Modal'
-import FormModalProduct from '@/components/FormModal'
+import Form from '@/components/Form'
 import { useAlert } from '@/hooks/useAlert'
 import Alert from '@/common/Alert'
 
 export default function Dasboard() {
-  const [offsetProducts, setOffsetProducts] = useState(0);
+  const [offsetProducts, setOffsetProducts] = useState(0)
   const [openModal, setOpenModal] = useState(false)
   const { alert, setAlert, toggleAlert } = useAlert()
 
@@ -22,7 +21,7 @@ export default function Dasboard() {
   const products: Product[] = useFetch(endpoints.products.getProducts(productLimit, offsetProducts))
   const totalProducts = useFetch(endpoints.products.getProducts(0, 0)).length
 
-  const categoryNames = products?.map((product) => product.category.name);
+  const categoryNames = products?.map((product) => product.category.name)
 
   const reducer = (acumulatorObject: { [x: string]: number }, current: string | number) => {
       if  ( acumulatorObject[current] ) {
@@ -47,21 +46,16 @@ export default function Dasboard() {
 
   return (
     <>
-      <Nav />
-      <div className="min-h-screen flex flex-col items-center">
-        <div className="flex flex-col max-w-7xl p-4 gap-8 pt-28">
-          <Header openModal={openModal} setOpenModal={setOpenModal} />
-          <Alert alert={alert} handleClose={toggleAlert} />
-          <Chart chartData={data} />
-          <Table products={products} />
-          {
-            totalProducts > 0 && 
-            <Paginate totalItems={totalProducts} itemsPerPage={productLimit} setOffset={setOffsetProducts} neighbours={3} />
-          }
-        </div>
-      </div>
+      <Header openModal={openModal} setOpenModal={setOpenModal} />
+      <Alert alert={alert} handleClose={toggleAlert} />
+      <Chart chartData={data} />
+      <Table products={products} />
+      {
+        totalProducts > 0 && 
+        <Paginate totalItems={totalProducts} itemsPerPage={productLimit} setOffset={setOffsetProducts} neighbours={3} />
+      }
       <Modal open={openModal} setOpen={setOpenModal}>
-        <FormModalProduct setOpen={setOpenModal} setAlert={setAlert} />
+        <Form setOpen={setOpenModal} setAlert={setAlert} />
       </Modal>
     </>
   )

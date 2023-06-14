@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function Header(props: Props) {
-  const { openModal, setOpenModal } = props;
+  const { openModal, setOpenModal } = props
 
   return (
     <div className="lg:flex lg:items-center lg:justify-between">

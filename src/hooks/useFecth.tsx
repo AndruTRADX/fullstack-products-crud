@@ -17,5 +17,5 @@ export const useFetch = (endpoint: string) => {
     }
   }, [endpoint])
 
-  return data;
+  return data
 }

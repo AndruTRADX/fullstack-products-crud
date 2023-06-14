@@ -3,6 +3,7 @@ import { deleteProduct } from '@/libs/product.api'
 import { Product } from '@/types/Product'
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 interface Props {
@@ -76,12 +77,14 @@ export default function Table(props: Props) {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${product.price}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <Link href={`/dashboard/${product.id}`}>
+                          <PencilSquareIcon 
+                            className="text-purple-600 hover:text-purple-800 hover:underline cursor-pointer inline " 
+                            width={20} 
+                            height={20}
+                          />
+                        </Link>
                         
-                        <PencilSquareIcon 
-                          className="text-purple-600 hover:text-purple-800 hover:underline cursor-pointer inline " 
-                          width={20} 
-                          height={20}
-                        />
                         
                         <TrashIcon 
                           className="ml-6 text-red-600 hover:text-red-800 hover:underline cursor-pointer inline" 

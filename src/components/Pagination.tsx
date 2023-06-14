@@ -11,43 +11,43 @@ interface Props {
 const Paginate = (props: Props) => {
   const { totalItems, itemsPerPage, neighbours, setOffset } = props
 
-  const items = [];
-  const [current, setCurrent] = useState(1);
-  const totalPage = Math.ceil(totalItems / itemsPerPage);
-  const end = Math.min(Math.max(neighbours * 2 + 2, neighbours + current + 1), totalPage + 1);
-  const start = Math.min(Math.max(end - (neighbours * 2 + 1), 1), Math.max(current - neighbours, 1));
+  const items = []
+  const [current, setCurrent] = useState(1)
+  const totalPage = Math.ceil(totalItems / itemsPerPage)
+  const end = Math.min(Math.max(neighbours * 2 + 2, neighbours + current + 1), totalPage + 1)
+  const start = Math.min(Math.max(end - (neighbours * 2 + 1), 1), Math.max(current - neighbours, 1))
 
   for (let i = start; i < end; i++) {
     items.push(
       <button
         key={`Paginador-${i}`}
         onClick={() => {
-          setCurrent(i);
-          setOffset((i - 1) * itemsPerPage);
+          setCurrent(i)
+          setOffset((i - 1) * itemsPerPage)
         }}
         aria-current="page"
         className={`${getClassActive(i)} relative inline-flex items-center px-4 py-2 border text-sm font-medium`}
       >
         {i}
       </button>
-    );
+    )
   }
 
   function getClassActive(i: number) {
-    return i === current ? 'z-10 bg-purple-50 border-purple-500 text-purple-600' : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50';
+    return i === current ? 'z-10 bg-purple-50 border-purple-500 text-purple-600' : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
   }
 
   function prevPage() {
     if (current > 1) {
-      setCurrent(current - 1);
-      setOffset((current - 2) * itemsPerPage);
+      setCurrent(current - 1)
+      setOffset((current - 2) * itemsPerPage)
     }
   }
 
   function nextPage() {
     if (current < totalPage) {
-      setCurrent(current + 1);
-      setOffset(current * itemsPerPage);
+      setCurrent(current + 1)
+      setOffset(current * itemsPerPage)
     }
   }
 
@@ -81,7 +81,7 @@ const Paginate = (props: Props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Paginate;
+export default Paginate

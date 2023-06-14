@@ -72,7 +72,7 @@ export default function Nav() {
 
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
-              <div className="flex items-center">
+                <div className="flex items-center">
                   <div className="flex-shrink-0 h-10 w-10">
                   </div>
                   <div className="ml-4">
@@ -90,7 +90,7 @@ export default function Nav() {
                         className="rounded-full" src={user.imageUrl} alt={user.imageUrl}
                         width={40}
                         height={40}
-                        style={{ objectFit: "cover", width: '40px', height: '40px' }}
+                        style={{ objectFit: 'cover', width: '40px', height: '40px' }}
                       />
                     </Menu.Button>
                   </div>
@@ -121,6 +121,7 @@ export default function Nav() {
                             <a
                               href="#"
                               className={classNames(active ? 'bg-slate-100' : '', 'block px-4 py-2 text-sm text-slate-700')}
+                              onClick={() => auth.signOut()}
                             >
                               Sign out
                             </a>

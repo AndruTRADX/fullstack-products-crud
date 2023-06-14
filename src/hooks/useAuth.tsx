@@ -21,6 +21,7 @@ interface AppContextInterface {
   user: User | undefined
   signIn: (email: string, password: string) => Promise<any>
   signUp: (email: string, password: string, name: string) => Promise<any>
+  signOut: () => Promise<any>
 }
 
 const AuthContext = createContext<AppContextInterface | undefined>(undefined)
@@ -69,11 +70,20 @@ export const useAuthProvider = () => {
     )
   }
 
+  const signOut = async () => {
+    Cookie.remove('token')
+    setUser(undefined)
+    delete axios.defaults.headers.Authorization
+    window.location.href = '/'
+  }
+
   return {
     user,
     signIn,
-    signUp
+    signUp,
+    signOut,
   }
+  
 }
 
 export const ProviderAuth = (props: Props) => {

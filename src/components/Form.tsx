@@ -1,16 +1,19 @@
 import { Alert } from '@/hooks/useAlert'
-import { addProduct } from '@/libs/product.api'
-import { CreateProduct } from '@/types/Product'
+import { addProduct, updateProduct } from '@/libs/product.api'
+import { CreateProduct, Product } from '@/types/Product'
 import { Dispatch, FormEvent, SetStateAction, useRef } from 'react'
+import { useRouter } from 'next/navigation'
 
 interface Props {
-  setOpen: Dispatch<SetStateAction<boolean>>
-  setAlert: Dispatch<SetStateAction<Alert>>
+  setOpen?: Dispatch<SetStateAction<boolean>>
+  setAlert?: Dispatch<SetStateAction<Alert>>
+  product?: Product
 }
 
-export default function FormModalProduct(props: Props) {
+export default function Form(props: Props) {
   const formRef = useRef<HTMLFormElement>(null)
-  const { setOpen, setAlert } = props;
+  const { setOpen, setAlert, product } = props
+  const router = useRouter()
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
@@ -23,26 +26,35 @@ export default function FormModalProduct(props: Props) {
       categoryId: parseInt(formData.get('category') as string,) as number,
     }
 
-    addProduct(data)
-      .then(() => {
-        setAlert({
-          active: true,
-          message: 'Product added successfully',
-          autoClose: true,
-          type: 'success',
+    if (product) {
+      updateProduct(product.id, data)
+        .then((res) => {
+          router.push('/dashboard')
+          console.log(res)
         })
-        setOpen(false)
-        console.log(true)
-      })
-      .catch((error) => {
-        setAlert({
-          active: true,
-          message: error.message,
-          autoClose: true,
-          type: 'error',
+        .catch((error) => {
+          console.log(error)
         })
-        console.log(false)
-      })
+    } else if (setAlert && setOpen) {
+      addProduct(data)
+        .then(() => {
+          setAlert({
+            active: true,
+            message: 'Product added successfully',
+            autoClose: true,
+            type: 'success',
+          })
+          setOpen(false)
+        })
+        .catch((error) => {
+          setAlert({
+            active: true,
+            message: error.message,
+            autoClose: true,
+            type: 'error',
+          })
+        })
+    }
   }
 
   return (
@@ -58,6 +70,7 @@ export default function FormModalProduct(props: Props) {
                 Title
               </label>
               <input
+                defaultValue={product?.title}
                 type="text"
                 name="title"
                 id="title"
@@ -72,6 +85,7 @@ export default function FormModalProduct(props: Props) {
                 Price
               </label>
               <input
+                defaultValue={product?.price}
                 type="number"
                 name="price"
                 id="price"
@@ -86,6 +100,7 @@ export default function FormModalProduct(props: Props) {
                 Category
               </label>
               <select
+                defaultValue={product?.category?.id}
                 id="category"
                 name="category"
                 autoComplete="category-name"
@@ -107,6 +122,7 @@ export default function FormModalProduct(props: Props) {
                 Description
               </label>
               <textarea
+                defaultValue={product?.description}
                 name="description"
                 id="description"
                 autoComplete="description"
@@ -142,6 +158,7 @@ export default function FormModalProduct(props: Props) {
                       >
                         <span>Upload a file</span>
                         <input
+                          defaultValue={product?.images[0]}
                           id="images"
                           name="images"
                           type="file"
@@ -169,5 +186,5 @@ export default function FormModalProduct(props: Props) {
         </div>
       </div>
     </form>
-  );
+  )
 }

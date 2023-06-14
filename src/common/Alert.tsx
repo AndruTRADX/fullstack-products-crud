@@ -1,4 +1,4 @@
-import { Alert } from '@/hooks/useAlert';
+import { Alert } from '@/hooks/useAlert'
 import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline'
 
 interface Props {
@@ -10,8 +10,8 @@ const Alert = (props: Props) => {
   const { alert, handleClose } = props
   if (alert?.active && alert?.autoClose) {
     setTimeout(() => {
-      handleClose();
-    }, 9000);
+      handleClose()
+    }, 9000)
   }
 
   return (
@@ -39,7 +39,7 @@ const Alert = (props: Props) => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Alert;
+export default Alert

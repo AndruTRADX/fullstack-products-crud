@@ -9,8 +9,8 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   rules: {
-    'quotes': ["error", "single", { "allowTemplateLiterals": true }],
-    'jsx-quotes': ['warn', 'double', { 'allowTemplateLiterals': true }],
+    'quotes': ['error', 'single', { 'allowTemplateLiterals': true }],
+    'jsx-quotes': ['warn', 'prefer-double'],
     'semi': ['warn', 'never'],
   },
 }

@@ -7,10 +7,10 @@ export const endpoints = {
     profile: `${API}/api/${VERSION}/auth/profile`,
   },
   products: {
-    getProduct: (id: string) => `${API}/api/${VERSION}/products/${id}/`,
+    getProduct: (id: string | string[] | undefined) => `${API}/api/${VERSION}/products/${id}/`,
     getProducts: (limit = 10, offset = 1) => `${API}/api/${VERSION}/products?limit=${limit}&offset=${offset}`,
     addProducts: `${API}/api/${VERSION}/products`,
-    updateProducts: (id: string) => `${API}/api/${VERSION}/products/${id}/`,
+    updateProducts: (id: string | number) => `${API}/api/${VERSION}/products/${id}/`,
     deleteProducts: (id: string | number) => `${API}/api/${VERSION}/products/${id}/`,
   },
   categories: {
