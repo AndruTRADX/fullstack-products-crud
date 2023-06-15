@@ -6,7 +6,7 @@ const Index = ():JSX.Element => {
         
         <div className="max-w-2xl px-8 py-12 bg-gray-50 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-2xl shadow-sm">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full px-3 py-1 text-sm leading-6 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-950 dark:border-gray-600  dark:text-gray-300 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+            <div className="relative rounded-full px-3 py-1 text-sm leading-6 bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-950 dark:border-gray-600  dark:text-gray-300 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
             Built to streamline team data creation.{' '}
               <a href="https://www.youtube.com/watch?v=UOraKZbEj_M" target="_blank" className="font-semibold text-purple-600">
                 <span className="absolute inset-0" aria-hidden="true" />
