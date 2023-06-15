@@ -26,7 +26,7 @@ const Paginate = (props: Props) => {
           setOffset((i - 1) * itemsPerPage)
         }}
         aria-current="page"
-        className={`${getClassActive(i)} relative inline-flex items-center px-4 py-2 border text-sm font-medium`}
+        className={`${getClassActive(i)}  relative inline-flex items-center px-4 py-2 border text-sm font-medium`}
       >
         {i}
       </button>
@@ -34,7 +34,7 @@ const Paginate = (props: Props) => {
   }
 
   function getClassActive(i: number) {
-    return i === current ? 'z-10 bg-purple-50 border-purple-500 text-purple-600' : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
+    return i === current ? 'z-10 bg-purple-50 dark:bg-purple-900 dark:hover:bg-purple-600 dark:text-gray-200 border-purple-500 text-purple-600' : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'
   }
 
   function prevPage() {
@@ -52,10 +52,10 @@ const Paginate = (props: Props) => {
   }
 
   return (
-    <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+    <div className="bg-white dark:bg-gray-800 px-4 py-3 flex items-center justify-between border-t border-gray-200 rounded-b-lg dark:border-gray-700 sm:px-6">
       <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm text-gray-700">
+          <p className="text-sm text-gray-700 dark:text-gray-300">
             Showing <span className="font-medium">{itemsPerPage * (current - 1) + 1}</span> to{' '}
             <span className="font-medium">{current * itemsPerPage < totalItems ? current * itemsPerPage : totalItems}</span> of <span className="font-medium">{totalItems}</span> results
           </p>
@@ -64,7 +64,7 @@ const Paginate = (props: Props) => {
           <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
             <button
               onClick={() => prevPage()}
-              className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              className="relative inline-flex items-center px-2 py-2 rounded-l-md border dark:bg-gray-800 border-gray-300 dark:border-gray-700 bg-white text-sm font-medium text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900"
             >
               <span className="sr-only">Previous</span>
               <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
@@ -72,7 +72,7 @@ const Paginate = (props: Props) => {
             {items}
             <button
               onClick={() => nextPage()}
-              className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              className="relative inline-flex items-center px-2 py-2 rounded-r-md border dark:bg-gray-800 border-gray-300 dark:border-gray-700 bg-white text-sm font-medium text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900"
             >
               <span className="sr-only">Next</span>
               <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />

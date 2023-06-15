@@ -55,10 +55,10 @@ export default function Login() {
 
   return (
     <>
-      <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm flex flex-col justify-center items-center">
+      <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8 dark:bg-gray-900">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm flex flex-col justify-center items-center dark:bg-gray-900">
           <TableCellsIcon className="w-10 h-10 text-purple-600 " />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-gray-200">
             {
               haveAcount
               ? 'Sign in to your account'
@@ -74,7 +74,7 @@ export default function Login() {
             haveAcount
             ? ''
             : <div>
-                <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
+                <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200">
                   Username
                 </label>
                 <div className="mt-2">
@@ -85,14 +85,14 @@ export default function Login() {
                     autoComplete="text"
                     ref={nameRef}
                     required
-                    className="block w-full rounded-md border-0 py-1.5 text-slate-800 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-slate-800 dark:bg-gray-800 dark:text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
             }
             
             <div>
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200">
                 Email address
               </label>
               <div className="mt-2">
@@ -103,17 +103,17 @@ export default function Login() {
                   autoComplete="email"
                   ref={emailRef}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-slate-800 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-slate-800 dark:bg-gray-800 dark:text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
 
             <div>
               <div className="flex items-center justify-between">
-                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200">
                   Password
                 </label>
-                <div className="text-sm">
+                <div className="text-sm text-gray-900 dark:text-gray-200">
                   {
                     haveAcount
                     ? 'You do not have an account? '
@@ -143,7 +143,7 @@ export default function Login() {
                   autoComplete="current-password"
                   ref={passwordRef}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-800 dark:text-gray-300 dark:bg-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -165,11 +165,11 @@ export default function Login() {
           show
             ? 
               isLogged
-                ? <div className="bg-blue-50 border border-blue-200 text-sm text-blue-600 rounded-md my-8 p-4" role="alert">
+                ? <div className="bg-blue-50 dark:bg-blue-900 border border-blue-200 text-sm text-blue-600 rounded-md my-8 p-4" role="alert">
                     <span className="font-bold">Loggin successfull</span> redirecting to the dashboard...
                   </div>
 
-                : <div className="bg-red-50 border border-red-200 text-sm text-red-600 rounded-md my-8 p-4" role="alert">
+                : <div className="bg-red-50 dark:bg-red-900 border border-red-200  text-sm text-red-600 rounded-md my-8 p-4" role="alert">
                     <span className="font-bold">Unauthorized</span> invalid username or password.
                   </div>
             : ''
@@ -179,11 +179,11 @@ export default function Login() {
           showNewUser
             ? 
               isCreated
-                ? <div className="bg-blue-50 border border-blue-200 text-sm text-blue-600 rounded-md my-8 p-4" role="alert">
+                ? <div className="bg-blue-50 border dark:bg-blue-900 border-blue-200 text-sm text-blue-600 rounded-md my-8 p-4" role="alert">
                     <span className="font-bold">User created successfull</span> now login in 3 seconds...
                   </div>
 
-                : <div className="bg-red-50 border border-red-200 text-sm text-red-600 rounded-md my-8 p-4" role="alert">
+                : <div className="bg-red-50 border dark:bg-red-900 border-red-200 text-sm text-red-600 rounded-md my-8 p-4" role="alert">
                     <span className="font-bold">Failed</span> Something went wrong, try again.
                   </div>
             : ''

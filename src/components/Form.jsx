@@ -56,14 +56,14 @@ export default function Form(props) {
   }
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit}>
-      <div className="overflow-hidden">
-        <div className="px-4 py-5 bg-white sm:p-6">
+    <form ref={formRef} onSubmit={handleSubmit} className="dark:bg-gray-900 rounded-lg">
+      <div className="overflow-hidden dark:bg-gray-900">
+        <div className="px-4 py-5 bg-white dark:bg-gray-900 sm:p-6">
           <div className="grid grid-cols-6 gap-6">
             <div className="col-span-6 sm:col-span-3">
               <label
                 htmlFor="title"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Title
               </label>
@@ -72,13 +72,13 @@ export default function Form(props) {
                 type="text"
                 name="title"
                 id="title"
-                className="mt-1 focus:ring-purple-500 focus:border-purple-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                className="mt-1 focus:ring-purple-500 focus:border-purple-500 block w-full shadow-sm sm:text-sm border-gray-300 dark:border-gray-700 rounded-md dark:bg-gray-800 dark:text-gray-300"
               />
             </div>
             <div className="col-span-6 sm:col-span-3">
               <label
                 htmlFor="price"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Price
               </label>
@@ -87,13 +87,13 @@ export default function Form(props) {
                 type="number"
                 name="price"
                 id="price"
-                className="mt-1 focus:ring-purple-500 focus:border-purple-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                className="mt-1 focus:ring-purple-500 focus:border-purple-500 block w-full shadow-sm sm:text-sm border-gray-300 dark:border-gray-700 rounded-md dark:bg-gray-800 dark:text-gray-300"
               />
             </div>
             <div className="col-span-6">
               <label
                 htmlFor="category"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Category
               </label>
@@ -102,7 +102,7 @@ export default function Form(props) {
                 id="category"
                 name="category"
                 autoComplete="category-name"
-                className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm"
+                className="mt-1 block w-full py-2 px-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm dark:text-gray-300"
               >
                 <option value="1">Clothes</option>
                 <option value="2">Electronics</option>
@@ -115,7 +115,7 @@ export default function Form(props) {
             <div className="col-span-6">
               <label
                 htmlFor="description"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Description
               </label>
@@ -125,15 +125,15 @@ export default function Form(props) {
                 id="description"
                 autoComplete="description"
                 rows={3}
-                className="form-textarea block w-full mt-1 focus:ring-purple-500 focus:border-purple-500 shadow-sm sm:text-sm border-gray-300 rounded-md"
+                className="form-textarea block w-full mt-1 focus:ring-purple-500 focus:border-purple-500 shadow-sm sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-md dark:text-gray-300"
               />
             </div>
             <div className="col-span-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Cover photo
                 </label>
-                <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 dark:border-gray-700 border-dashed rounded-md">
                   <div className="space-y-1 text-center">
                     <svg
                       className="mx-auto h-12 w-12 text-gray-400"
@@ -152,7 +152,7 @@ export default function Form(props) {
                     <div className="flex text-sm text-gray-600">
                       <label
                         htmlFor="images"
-                        className="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500"
+                        className="relative cursor-pointer bg-white dark:bg-gray-900 rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500"
                       >
                         <span>Upload a file</span>
                         <input
@@ -165,7 +165,7 @@ export default function Form(props) {
                       </label>
                       <p className="pl-1">or drag and drop</p>
                     </div>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-gray-500 dark:text-gray-300">
                       PNG, JPG, GIF up to 10MB
                     </p>
                   </div>

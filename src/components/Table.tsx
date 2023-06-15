@@ -28,20 +28,20 @@ export default function Table(props: Props) {
       <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+            <div className="shadow-gray-300 dark:shadow-gray-700 overflow-hidden border border-gray-200 dark:border-gray-700 sm:rounded-lg">
+              <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <thead className="bg-gray-50 dark:bg-gray-800">
                   <tr>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                       Name
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                       Id
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                       Category
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                       Price
                     </th>
                     <th scope="col" className="relative px-6 py-3">
@@ -49,7 +49,7 @@ export default function Table(props: Props) {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
                   {products?.map((product, index) => (
                     <tr key={`Product-item-${index}`}>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -63,23 +63,23 @@ export default function Table(props: Props) {
                             />
                           </div>
                           <div className="ml-4">
-                            <div className="text-sm font-medium text-gray-900">{product.title}</div>
+                            <div className="text-sm font-medium text-gray-900 dark:text-gray-300">{product.title}</div>
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-500">{product.id}</div>
+                        <div className="text-sm text-gray-500 dark:text-gray-300">{product.id}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
+                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 dark:bg-purple-600 text-purple-800 dark:text-white">
                           {product.category?.name}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${product.price}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">${product.price}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <Link href={`/dashboard/${product.id}`}>
                           <PencilSquareIcon 
-                            className="text-purple-600 hover:text-purple-800 hover:underline cursor-pointer inline " 
+                            className="text-purple-500 hover:text-purple-700 hover:underline cursor-pointer inline " 
                             width={20} 
                             height={20}
                           />
@@ -87,7 +87,7 @@ export default function Table(props: Props) {
                         
                         
                         <TrashIcon 
-                          className="ml-6 text-red-600 hover:text-red-800 hover:underline cursor-pointer inline" 
+                          className="ml-6 text-red-500 hover:text-red-700 hover:underline cursor-pointer inline" 
                           width={20} 
                           height={20}
                           aria-hidden="true"

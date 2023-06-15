@@ -27,7 +27,7 @@ export default function Nav() {
   }
 
   return (
-    <Disclosure as="nav" className="w-full fixed backdrop-blur bg-white/80 dark:bg-slate-950/80 border-b dark:border-slate-700  z-10 border-slate-300">
+    <Disclosure as="nav" className="w-full fixed backdrop-blur bg-white/80 dark:bg-gray-800/80 border-b dark:border-gray-700  z-10 border-gray-300">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -35,7 +35,7 @@ export default function Nav() {
               
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-slate-200 hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-200 dark:bg-gray-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -48,7 +48,7 @@ export default function Nav() {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <TableCellsIcon
-                    className="h-8 text-slate-200"
+                    className="h-8 text-gray-200"
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
@@ -58,7 +58,7 @@ export default function Nav() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? 'bg-purple-600 hover:bg-purple-700 text-white' : 'text-slate-300 hover:text-white',
+                          item.current ? 'bg-purple-600 hover:bg-purple-700 text-white' : 'text-gray-300 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
@@ -76,15 +76,15 @@ export default function Nav() {
                   <div className="flex-shrink-0 h-10 w-10">
                   </div>
                   <div className="ml-4">
-                    <div className="text-sm font-medium text-slate-200">{user.name}</div>
-                    <div className="text-sm text-slate-300">{user.email}</div>
+                    <div className="text-sm font-medium text-gray-200">{user.name}</div>
+                    <div className="text-sm text-gray-300">{user.email}</div>
                   </div>
                 </div>
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="flex rounded-full text-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 focus:ring-offset-slate-800">
+                    <Menu.Button className="flex rounded-full text-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
                       <Image
                         className="rounded-full" src={user.imageUrl} alt={user.imageUrl}
@@ -110,7 +110,7 @@ export default function Nav() {
                           {({ active }) => (
                             <a
                               href="#"
-                              className={classNames(active ? 'bg-slate-100' : '', 'block px-4 py-2 text-sm text-slate-700')}
+                              className={classNames(active ? 'bg-gray-100 dark:bg-gray-900' : '', 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-300')}
                             >
                               Your Profile
                             </a>
@@ -120,7 +120,7 @@ export default function Nav() {
                           {({ active }) => (
                             <a
                               href="#"
-                              className={classNames(active ? 'bg-slate-100' : '', 'block px-4 py-2 text-sm text-slate-700')}
+                              className={classNames(active ? 'bg-gray-100 dark:bg-gray-900' : '', 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-300')}
                               onClick={() => auth.signOut()}
                             >
                               Sign out
@@ -133,7 +133,7 @@ export default function Nav() {
                           {({ active }) => (
                             <Link
                               href="/login"
-                              className={classNames(active ? 'bg-slate-100' : '', 'block px-4 py-2 text-sm text-slate-700')}
+                              className={classNames(active ? 'bg-gray-100 dark:bg-gray-900' : '', 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-300')}
                             >
                               Log in
                             </Link>
@@ -155,7 +155,7 @@ export default function Nav() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current ? 'bg-slate-900 text-white' : 'text-slate-300 hover:bg-slate-700 hover:text-white',
+                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium'
                   )}
                   aria-current={item.current ? 'page' : undefined}

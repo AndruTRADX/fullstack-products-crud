@@ -17,13 +17,13 @@ const Alert = (props: Props) => {
   return (
     <>
       {alert?.active && (
-        <div id="dismiss-alert" className="hs-removing:translate-x-5 hs-removing:opacity-0 transition duration-300 bg-purple-50 border border-purple-200 rounded-md p-4" role="alert">
+        <div id="dismiss-alert" className="hs-removing:translate-x-5 hs-removing:opacity-0 transition duration-300 bg-purple-50 dark:bg-purple-900 border border-purple-200 dark:border-purple-600 rounded-md p-4" role="alert">
           <div className="flex">
             <div className="flex-shrink-0">
-              <CheckCircleIcon className="h-4 w-4 text-purple-400 mt-0.5" />
+              <CheckCircleIcon className="h-4 w-4 text-purple-400 dark:text-purple-300 mt-0.5" />
             </div>
             <div className="ml-3">
-              <div className="text-sm text-purple-800 font-medium">
+              <div className="text-sm text-purple-800 dark:text-purple-200 font-medium">
                 {alert.message}
               </div>
             </div>

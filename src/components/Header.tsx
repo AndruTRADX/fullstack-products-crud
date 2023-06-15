@@ -18,7 +18,7 @@ export default function Header(props: Props) {
             <div className="lg:pr-4">
               <div className="lg:max-w-lg">
                 <p className="text-base font-semibold leading-7 text-purple-600">Dashboard</p>
-                <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Manage your products</h1>
+                <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-200 sm:text-4xl">Manage your products</h1>
               </div>
             </div>
           </div>
