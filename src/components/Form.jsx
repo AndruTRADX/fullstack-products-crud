@@ -1,29 +1,27 @@
-import { Alert } from '@/hooks/useAlert'
 import { addProduct, updateProduct } from '@/libs/product.api'
-import { CreateProduct, Product } from '@/types/Product'
-import { Dispatch, FormEvent, SetStateAction, useRef } from 'react'
+import { useRef } from 'react'
 import { useRouter } from 'next/navigation'
 
-interface Props {
-  setOpen?: Dispatch<SetStateAction<boolean>>
-  setAlert?: Dispatch<SetStateAction<Alert>>
-  product?: Product
-}
+// interface Props {
+//   setOpen?: Dispatch<SetStateAction<boolean>>
+//   setAlert?: Dispatch<SetStateAction<Alert>>
+//   product?: Product
+// }
 
-export default function Form(props: Props) {
-  const formRef = useRef<HTMLFormElement>(null)
+export default function Form(props) {
+  const formRef = useRef(null)
   const { setOpen, setAlert, product } = props
   const router = useRouter()
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
-    const formData = new FormData(formRef.current!)
-    const data: CreateProduct = {
-      title: formData.get('title') as string,
-      description: formData.get('title') as string,
-      price: parseInt(formData.get('price') as string) as number,
-      images: [formData.get('images')?.name as string],
-      categoryId: parseInt(formData.get('category') as string,) as number,
+    const formData = new FormData(formRef.current)
+    const data = {
+      title: formData.get('title'),
+      description: formData.get('title'),
+      price: parseInt(formData.get('price')),
+      images: [formData.get('images')?.name],
+      categoryId: parseInt(formData.get('category')),
     }
 
     if (product) {

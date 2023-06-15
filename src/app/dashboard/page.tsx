@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { useFetch } from '@/hooks/useFecth'
 import { endpoints } from '@/libs/endpoints.api'
 import Paginate from '@/components/Pagination'
-import { Chart } from '@/common/Chart'
 import Header from '@/components/Header'
 import { Product } from '@/types/Product'
 import Modal from '@/common/Modal'
@@ -17,38 +16,38 @@ export default function Dasboard() {
   const [openModal, setOpenModal] = useState(false)
   const { alert, setAlert, toggleAlert } = useAlert()
 
-  const productLimit = 5
+  const productLimit = 10
   const products: Product[] = useFetch(endpoints.products.getProducts(productLimit, offsetProducts))
   const totalProducts = useFetch(endpoints.products.getProducts(0, 0)).length
 
-  const categoryNames = products?.map((product) => product.category.name)
+  // const categoryNames = products?.map((product) => product.category.name)
 
-  const reducer = (acumulatorObject: { [x: string]: number }, current: string | number) => {
-      if  ( acumulatorObject[current] ) {
-        acumulatorObject[current] += 1
-      } else {
-        acumulatorObject[current] = 1
-      }
-      return acumulatorObject
-  }
-  const categoryOccurence = categoryNames.reduce(reducer, {})
+  // const reducer = (acumulatorObject: { [x: string]: number }, current: string | number) => {
+  //     if  ( acumulatorObject[current] ) {
+  //       acumulatorObject[current] += 1
+  //     } else {
+  //       acumulatorObject[current] = 1
+  //     }
+  //     return acumulatorObject
+  // }
+  // const categoryOccurence = categoryNames.reduce(reducer, {})
 
-  const data = {
-    datasets: [
-      {
-        label: 'Categories',
-        data: categoryOccurence,
-        borderWidth: 2,
-        backgroundColor: ['#dc2626', '#4b5563', '#16a34a', '#ca8a04', '#2563eb'],
-      },
-    ],
-  }
+  // const data = {
+  //   datasets: [
+  //     {
+  //       label: 'Categories',
+  //       data: categoryOccurence,
+  //       borderWidth: 2,
+  //       backgroundColor: ['#dc2626', '#4b5563', '#16a34a', '#ca8a04', '#2563eb'],
+  //     },
+  //   ],
+  // }
 
   return (
     <>
       <Header openModal={openModal} setOpenModal={setOpenModal} />
       <Alert alert={alert} handleClose={toggleAlert} />
-      <Chart chartData={data} />
+      {/* <Chart chartData={data} /> */}
       <Table products={products} />
       {
         totalProducts > 0 && 
