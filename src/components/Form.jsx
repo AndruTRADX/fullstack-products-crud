@@ -1,17 +1,24 @@
+'use client'
 import { addProduct, updateProduct } from '@/libs/product.api'
-import { useRef } from 'react'
-import { useRouter } from 'next/navigation'
-
-// interface Props {
-//   setOpen?: Dispatch<SetStateAction<boolean>>
-//   setAlert?: Dispatch<SetStateAction<Alert>>
-//   product?: Product
-// }
+import { useEffect, useRef, useState } from 'react'
+import axios from 'axios'
+import { endpoints } from '@/libs/endpoints.api'
 
 export default function Form(props) {
   const formRef = useRef(null)
-  const { setOpen, setAlert, product } = props
-  const router = useRouter()
+  const { setOpen, setAlert, id } = props
+  const [product, setProduct] = useState()
+
+  useEffect(() => {
+    if (!id) return
+
+    const getProduct = async () => {
+      const response = await axios.get(endpoints.products.getProduct(id))
+      console.log(id, response.data)
+      setProduct(response.data)
+    }
+    getProduct()
+  }, [id])
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -20,14 +27,14 @@ export default function Form(props) {
       title: formData.get('title'),
       description: formData.get('title'),
       price: parseInt(formData.get('price')),
-      images: [formData.get('images')?.name],
+      images: [formData.get('images')?.name || 'funny-cat.jpg'],
       categoryId: parseInt(formData.get('category')),
     }
 
     if (product) {
       updateProduct(product.id, data)
         .then((res) => {
-          router.push('/dashboard')
+          setOpen((prev) => !prev)
           console.log(res)
         })
         .catch((error) => {

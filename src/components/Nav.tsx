@@ -20,12 +20,6 @@ function classNames(...classes: string[]) {
 export default function Nav() {
   const auth = useAuth()
 
-  const user = {
-    name: auth?.user?.name || 'Please log in',
-    email: auth?.user?.email || 'email@eample.com',
-    imageUrl: auth?.user?.avatar || 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-  }
-
   return (
     <Disclosure as="nav" className="w-full fixed backdrop-blur bg-white/80 dark:bg-gray-800/80 border-b dark:border-gray-700  z-10 border-gray-300">
       {({ open }) => (
@@ -72,77 +66,71 @@ export default function Nav() {
 
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
-                <div className="flex items-center">
-                  <div className="flex-shrink-0 h-10 w-10">
+                {auth?.user ? (
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0 h-10 w-10">
+                    </div>
+                    <div className="ml-4">
+                      <div className="text-sm font-medium text-gray-200 text-end">{auth.user.name}</div>
+                      <div className="text-sm text-gray-300">{auth.user.email}</div>
+                    </div>
                   </div>
-                  <div className="ml-4">
-                    <div className="text-sm font-medium text-gray-200">{user.name}</div>
-                    <div className="text-sm text-gray-300">{user.email}</div>
-                  </div>
-                </div>
+                ) : (
+                  <></>
+                )
+              }
 
-                {/* Profile dropdown */}
+                {auth?.user ? (
                 <Menu as="div" className="relative ml-3">
-                  <div>
-                    <Menu.Button className="flex rounded-full text-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 focus:ring-offset-gray-800">
-                      <span className="sr-only">Open user menu</span>
-                      <Image
-                        className="rounded-full" src={user.imageUrl} alt={user.imageUrl}
-                        width={40}
-                        height={40}
-                        style={{ objectFit: 'cover', width: '40px', height: '40px' }}
-                      />
-                    </Menu.Button>
-                  </div>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    {
-                      auth?.user
-                      ? <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-gray-900 ring-opacity-5 focus:outline-none">
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={classNames(active ? 'bg-gray-100 dark:bg-gray-900' : '', 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-300')}
-                            >
-                              Your Profile
-                            </a>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={classNames(active ? 'bg-gray-100 dark:bg-gray-900' : '', 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-300')}
-                              onClick={() => auth.signOut()}
-                            >
-                              Sign out
-                            </a>
-                          )}
-                        </Menu.Item>
-                      </Menu.Items>
-                    : <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-gray-900 ring-opacity-5 focus:outline-none">
-                        <Menu.Item>
-                          {({ active }) => (
-                            <Link
-                              href="/login"
-                              className={classNames(active ? 'bg-gray-100 dark:bg-gray-900' : '', 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-300')}
-                            >
-                              Log in
-                            </Link>
-                          )}
-                        </Menu.Item>
-                      </Menu.Items>
-                    }
-                  </Transition>
-                </Menu>
+                <div>
+                  <Menu.Button className="flex rounded-full text-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <span className="sr-only">Open user menu</span>
+                    <Image
+                      className="rounded-full" src={auth.user.avatar} alt={auth.user.name}
+                      width={40}
+                      height={40}
+                      style={{ objectFit: 'cover', width: '40px', height: '40px' }}
+                    />
+                  </Menu.Button>
+                </div>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 py-1 shadow-lg ring-1 ring-gray-900 ring-opacity-5 focus:outline-none">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={classNames(active ? 'bg-gray-100 dark:bg-gray-900' : '', 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-300')}
+                          >
+                            Your Profile
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <p
+                            className={classNames(active ? 'bg-gray-100 dark:bg-gray-900' : '', 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 cursor-pointer')}
+                            onClick={() => auth.signOut()}
+                          >
+                            Sign out
+                          </p>
+                        )}
+                      </Menu.Item>
+                    </Menu.Items>
+                </Transition>
+              </Menu>
+                ) : (
+                  <Link href="login" className="px-[12px] py-[8px] rounded-lg bg-purple-600 text-white cursor-pointer text-[16px] font-semibold">
+                    Login
+                  </Link>
+                )}
               </div>
             </div>
           </div>

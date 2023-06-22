@@ -1,5 +1,5 @@
 'use client'
-import { useState, useContext, createContext } from 'react'
+import { useState, useContext, createContext, useEffect } from 'react'
 import Cookie from 'js-cookie'
 import axios from 'axios'
 
@@ -10,12 +10,20 @@ interface User {
   password: string
   name: string
   role: string, 
-  avatar: string 
+  avatar: string
 }
 
 interface Props {
   children: JSX.Element
 }
+
+export interface AuthState {
+  user?: User;
+}
+
+export const Auth_INITIAL_STATE: AuthState = {
+  user: undefined,
+};
 
 interface AppContextInterface {
   user: User | undefined
@@ -32,6 +40,15 @@ export const useAuth = () => {
 
 export const useAuthProvider = () => {
   const [user, setUser] = useState()
+
+  const checkToken = async () => {
+    const token = Cookie.get('token')
+    if (token) {
+      axios.defaults.headers.Authorization = `Bearer ${token}`
+      const { data: user } = await axios.get(endpoints.auth.profile)
+      setUser(user)
+    }
+  }
 
   const signIn = async (email: string, password: string) => {
     const options = {
@@ -76,6 +93,10 @@ export const useAuthProvider = () => {
     delete axios.defaults.headers.Authorization
     window.location.href = '/'
   }
+
+  useEffect(() => {
+    checkToken()
+  }, [])
 
   return {
     user,

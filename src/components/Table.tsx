@@ -1,10 +1,11 @@
 'use client'
+import Modal from '@/common/Modal'
 import { deleteProduct } from '@/libs/product.api'
 import { Product } from '@/types/Product'
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import Form from './Form'
 
 interface Props {
   products: Product[]
@@ -13,6 +14,8 @@ interface Props {
 export default function Table(props: Props) {
   const { products: productsResponse } = props 
   const [products, setProducts] = useState<Product[]>([])
+  const [id, setId] = useState<number>()
+  const [openModal, setOpenModal] = useState(false)
 
   useEffect(()  => {
     setProducts(productsResponse)
@@ -56,7 +59,7 @@ export default function Table(props: Props) {
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10">
                             <Image 
-                              className="rounded-full" src={product.images[1]} alt={product.title}
+                              className="rounded-full" src={product.images[1] ? product.images[1] : 'https://picsum.photos/200' } alt={product.title}
                               width={40}
                               height={40}
                               loading="lazy"
@@ -77,14 +80,17 @@ export default function Table(props: Props) {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">${product.price}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <Link href={`/dashboard/${product.id}`}>
+                        <>
                           <PencilSquareIcon 
                             className="text-purple-500 hover:text-purple-700 hover:underline cursor-pointer inline " 
                             width={20} 
                             height={20}
+                            onClick={() => {
+                              setId(product.id)
+                              setOpenModal(true)
+                            }}
                           />
-                        </Link>
-                        
+                        </>
                         
                         <TrashIcon 
                           className="ml-6 text-red-500 hover:text-red-700 hover:underline cursor-pointer inline" 
@@ -102,6 +108,10 @@ export default function Table(props: Props) {
           </div>
         </div>
       </div>
+
+      <Modal open={openModal} setOpen={setOpenModal}>
+        <Form open={openModal} setOpen={setOpenModal} id={id} />
+      </Modal>
     </>
   )
 }

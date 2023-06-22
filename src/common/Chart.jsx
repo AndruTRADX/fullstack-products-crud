@@ -3,11 +3,7 @@
 
 // ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
-// interface Props {
-//   chartData: any
-// }
-
-// export const Chart = (props: Props) => {
+// export const Chart = (props) => {
 //   const { chartData } = props
 //   return (
 //     <>

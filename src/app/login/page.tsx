@@ -165,11 +165,11 @@ export default function Login() {
           show
             ? 
               isLogged
-                ? <div className="bg-blue-50 dark:bg-blue-900 border border-blue-200 text-sm text-blue-600 rounded-md my-8 p-4" role="alert">
+                ? <div className="bg-blue-50 dark:bg-blue-900 border border-blue-200 dark:border-blue-600 text-sm text-white font-semibold rounded-md my-8 p-4" role="alert">
                     <span className="font-bold">Loggin successfull</span> redirecting to the dashboard...
                   </div>
 
-                : <div className="bg-red-50 dark:bg-red-900 border border-red-200  text-sm text-red-600 rounded-md my-8 p-4" role="alert">
+                : <div className="bg-red-50 dark:bg-red-900 border border-red-200 dark:border-red-600  text-sm text-white font-semibold rounded-md my-8 p-4" role="alert">
                     <span className="font-bold">Unauthorized</span> invalid username or password.
                   </div>
             : ''
@@ -179,11 +179,11 @@ export default function Login() {
           showNewUser
             ? 
               isCreated
-                ? <div className="bg-blue-50 border dark:bg-blue-900 border-blue-200 text-sm text-blue-600 rounded-md my-8 p-4" role="alert">
+                ? <div className="bg-blue-50 border dark:bg-blue-900 border-blue-200 dark:border-blue-600 text-sm text-white font-semibold rounded-md my-8 p-4" role="alert">
                     <span className="font-bold">User created successfull</span> now login in 3 seconds...
                   </div>
 
-                : <div className="bg-red-50 border dark:bg-red-900 border-red-200 text-sm text-red-600 rounded-md my-8 p-4" role="alert">
+                : <div className="bg-red-50 border dark:bg-red-900 border-red-200 dark:border-red-600 text-sm text-white font-semibold rounded-md my-8 p-4" role="alert">
                     <span className="font-bold">Failed</span> Something went wrong, try again.
                   </div>
             : ''
