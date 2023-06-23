@@ -1,8 +1,12 @@
+'use client'
 import Link from 'next/link'
 import BgGrid from '@/ui-components/BgGrid'
 import { UserIcon } from '@heroicons/react/24/outline'
+import { useAuth } from '@/hooks/useAuth'
 
 function Index() {
+  const auth = useAuth()
+
   return (
     <div className="relative isolate px-6 lg:px-8 lg:pb-20 flex flex-col justify-center items-center min-h-screen bg-gray-900 dark:bg-gray-900">
         <BgGrid />
@@ -31,7 +35,7 @@ function Index() {
                 <span className="relative text-white">Get started</span>
               </Link>
 
-              <Link href="/login" className="rounded-xl bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-900 font-medium px-5 py-2.5 flex justify-center items-center gap-1 border border-gray-300 dark:border-gray-700 leading-6 text-gray-900 dark:text-gray-200 w-full sm:w-auto">
+              <Link href="/login" className={`rounded-xl bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-900 font-medium px-5 py-2.5 ${auth?.user ? 'hidden' : 'flex' } justify-center items-center gap-1 border border-gray-300 dark:border-gray-700 leading-6 text-gray-900 dark:text-gray-200 w-full sm:w-auto`}>
                 <UserIcon className="h-4 w-4" /> Login
               </Link>
             </div>
