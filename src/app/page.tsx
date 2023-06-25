@@ -15,10 +15,10 @@ function Index() {
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="relative rounded-full px-3 py-1 text-sm leading-6 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900 border border-gray-300 dark:border-gray-700  dark:text-gray-300 ring-1 ring-gray-900/10 hover:ring-gray-800/20">
             Built to streamline team data creation.{' '}
-              <a href="https://www.youtube.com/watch?v=UOraKZbEj_M" target="_blank" className="font-semibold text-purple-600">
+              <Link href="/login" target="_blank" className="font-semibold text-purple-600">
                 <span className="absolute inset-0" aria-hidden="true" />
                 Read more <span aria-hidden="true">&rarr;</span>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="text-center">
